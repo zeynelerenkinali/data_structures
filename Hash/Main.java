@@ -4,7 +4,7 @@ public class Main
     public static void main(String[] args) 
     {
         int size = 5;
-        hash_set hash = new hash_set(size);
+        hash_structure hash = new hash_structure(size);
         // Push elements to hash
         for(int i = 0; i < size; i++)
         {

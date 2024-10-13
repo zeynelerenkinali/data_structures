@@ -2,12 +2,12 @@ package Hash;
 
 import java.util.ArrayList;
 
-public class hash_set 
+public class hash_structure 
 {
     ArrayList<Integer> hash_arr_list = new ArrayList<>();
     int size;
     // Initialize the size of array_list with hash_set constructor
-    hash_set(int size)
+    hash_structure(int size)
     {
         this.size = size;
     }
