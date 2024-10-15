@@ -1,11 +1,9 @@
-package hash;
 public class Main 
 {
     public static void main(String[] args) 
     {
         int size = 5;
-        hash_structure hash = new hash_structure(size);
-        // Push elements to hash
+        hashStructure hash = new hashStructure(size);
         for(int i = 0; i < size; i++)
         {
             hash.push(i);
