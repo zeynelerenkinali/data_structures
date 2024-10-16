@@ -1,3 +1,4 @@
+package hash_with_arrayLists;
 import java.util.ArrayList;
 
 public class hashStructure 
