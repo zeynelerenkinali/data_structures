@@ -3,9 +3,14 @@ public class Queue
     Node front_node;
     Node rear_node;
     // index information of front and rear, -1 as starting because there is no element inserted 
-    int front_index = 0;
-    int rear_index = 0;
+    int front_index;
+    int rear_index;
 
+    Queue()
+    {
+        this.front_index = -1;
+        this.rear_index = -1;
+    }
     // Insertion process for an integer
     // Insertion will applied rear part of the queue,
     // However in the first insert we need to increase size of front index as well.
@@ -36,6 +41,6 @@ public class Queue
     }
     void Dequeue()
     {
-        
+
     }
 }
