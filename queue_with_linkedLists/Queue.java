@@ -10,6 +10,8 @@ public class Queue
     {
         this.front_index = -1;
         this.rear_index = -1;
+        this.rear_node = null;
+        this.front_node = null;
     }
     // Insertion process for an integer
     // Insertion will applied rear part of the queue,
@@ -18,7 +20,7 @@ public class Queue
     void Enqueue(int data)
     {
         Node ins = new Node(data);
-        if(rear_index == 0) // If queue is empty, inserted node will be first
+        if(rear_index == -1) // If queue is empty, inserted node will be first
         {
             front_node = ins;
             rear_node = ins;
@@ -41,6 +43,30 @@ public class Queue
     }
     void Dequeue()
     {
-
+        // Means there is one node in the linked list
+        if(front_index == rear_index)
+        {
+            front_node = null;
+            rear_node = null;
+            front_index = -1;
+            rear_index = -1;
+        }
+        else
+        {
+            front_node = front_node.get_next();
+            front_index++;
+        }
+    }
+    void print_queue()
+    {
+        Node temp = front_node;
+        int counter = rear_index - front_index;
+        while(counter != 0)
+        {
+            System.out.print(temp.get_data() + " ");
+            temp = temp.get_next();
+            counter--;
+        }
+        System.out.println();
     }
 }
