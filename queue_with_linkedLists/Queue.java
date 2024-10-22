@@ -30,9 +30,9 @@ public class Queue
         else // else queue is not empty,
         {
             Node temp = front_node;
-            int counter = 0;
+            int counter = front_index;
             rear_node = ins;
-            while(counter != rear_index - 1)
+            while(counter != rear_index)
             {
                 temp = temp.get_next();
                 counter++;
@@ -61,12 +61,17 @@ public class Queue
     {
         Node temp = front_node;
         int counter = rear_index - front_index;
-        while(counter != 0)
+        if(temp != null)
         {
-            System.out.print(temp.get_data() + " ");
-            temp = temp.get_next();
-            counter--;
+            while(counter >= 0)
+            {
+                System.out.print(temp.get_data() + " ");
+                temp = temp.get_next();
+                counter--;
+            }
         }
+        else
+            System.err.print("Queue is empty...");
         System.out.println();
     }
 }

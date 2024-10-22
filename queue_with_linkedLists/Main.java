@@ -9,5 +9,27 @@ public class Main
         queue.Enqueue(2);
 
         queue.print_queue();
+
+        queue.Dequeue();
+
+        queue.print_queue();
+
+        queue.Dequeue();
+
+        queue.print_queue();
+
+        queue.Enqueue(5);
+        queue.Enqueue(6);
+
+        queue.print_queue();
+
+        queue.Dequeue();
+        queue.Dequeue();
+
+        queue.print_queue();
+
+        queue.Dequeue();
+
+        queue.print_queue();
     }
 }
