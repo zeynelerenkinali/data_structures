@@ -1,4 +1,4 @@
-public class Queue
+public class Queue_linkedList
 {
     Node front_node;
     Node rear_node;
@@ -6,7 +6,7 @@ public class Queue
     int front_index;
     int rear_index;
 
-    Queue()
+    Queue_linkedList()
     {
         this.front_index = -1;
         this.rear_index = -1;

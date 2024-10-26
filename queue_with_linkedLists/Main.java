@@ -2,7 +2,7 @@ public class Main
 {
     public static void main(String[] args )
     {
-        Queue queue = new Queue();
+        Queue_linkedList queue = new Queue_linkedList();
 
         queue.Enqueue(0);
         queue.Enqueue(1);
