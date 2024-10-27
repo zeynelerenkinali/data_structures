@@ -27,5 +27,11 @@ Algorithm
 */ 
 public class InToPost_fix 
 {
+    public int infix_to_postfix(String inputString)
+    {
+        char[] inputCharArr = inputString.toCharArray();
 
+        
+        return 0;
+    }
 }
