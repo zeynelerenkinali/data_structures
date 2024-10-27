@@ -4,7 +4,7 @@ Algorithm
 1. Take the input as String
 2. Initialize result charArray as size of input String, Initialize Operation hash(array)
 3. Transform String input to charArray
-4. Read a Character from charArray
+4. Read a Character from charArray *
 5. If character is int, push it to result charArray
 6. Else if character is operator, go to 7. Step
 7. Check the operator's priority by function, Go to 8. Step
@@ -29,9 +29,38 @@ public class InToPost_fix
 {
     public int infix_to_postfix(String inputString)
     {
+        int operation_hash_capacity = 20, result_index = 0;
         char[] inputCharArr = inputString.toCharArray();
+        char[] resultCharArr = new char[operation_hash_capacity];
+        hash_arr hash = new hash_arr(operation_hash_capacity);
+        int inputCharArrLength = inputCharArr.length;
+        char readChar;
 
-        
+        for(int i = 0; i < inputCharArrLength; i++)
+        {
+            readChar = inputCharArr[i];
+            if(Character.isDigit(readChar))
+                resultCharArr[result_index++] = readChar;
+            else
+            {
+                if(readChar == '(')
+                {
+
+                }
+            }
+        }
         return 0;
+    }
+    public int operation_priority(char ch)
+    {
+        if(ch == '(' || ch == ')')
+            return 3;
+        else if(ch == '^')
+            return 2;
+        else if(ch == '*' || ch == '/')
+            return 1;
+        else if(ch == '+' || ch == '-')
+            return 0;
+        return -1;
     }
 }
