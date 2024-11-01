@@ -4,7 +4,7 @@ Algorithm
 1. Take the input as String
 2. Initialize result charArray as size of input String, Initialize Operation hash(array)
 3. Transform String input to charArray
-4. Read a Character from charArray *
+4. *In LOOP of length. Read a Character from charArray *
 5. If character is int, push it to result charArray
 6. Else if character is operator, go to 7. Step
 7. Check the operator's priority by function, Go to 8. Step
@@ -29,6 +29,7 @@ public class InToPost_fix
 {
     public int infix_to_postfix(String inputString)
     {
+        //1, 2, 3
         int operation_hash_capacity = 20, result_index = 0;
         char[] inputCharArr = inputString.toCharArray();
         char[] resultCharArr = new char[operation_hash_capacity];
@@ -38,17 +39,30 @@ public class InToPost_fix
 
         for(int i = 0; i < inputCharArrLength; i++)
         {
+            // 4
             readChar = inputCharArr[i];
-            if(Character.isDigit(readChar))
+            if(Character.isDigit(readChar)) // 5
                 resultCharArr[result_index++] = readChar;
-            else
+            else // 6
             {
-                if(readChar == '(')
+                // 7, 8
+                if(readChar == '(') // 9.1
                 {
                     hash.push(readChar);
                 }
-                else if(readChar == ')')
+                else if(readChar == ')') // 9.2
                 {
+                    // Check the hash until reach "(" if exists
+                    while(hash.peek() != '(')
+                    {
+                        if(hash.isEmpty()) // Check for Unappropriate Equation form
+                        {
+                            System.err.println("Unable to transform Infix to Postfix operation : Equation form is unappropriate.");
+                            break;
+                        }
+                        resultCharArr[result_index++] = hash.peek();
+                        hash.pop();
+                    }
                     
                 }
             }
