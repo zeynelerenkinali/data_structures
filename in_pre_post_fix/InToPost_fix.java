@@ -1,4 +1,3 @@
-package in_pre_post_fix;
 /* 
 Algorithm
 1. Take the input as String
@@ -17,22 +16,25 @@ Algorithm
         if "(" exists pop() all operations in hash until ")"
         else return error(parantheses is not correctly opened/closed).
 10. Push char to charArray
-11. Check hash if there is higher order operation, push the higher order operation in the hash to the result then push current operation to hash.
+11. Check hash if there is higher order operation; put the higher order operation (which is top index of the hash) to the result array with peek()
+    then pop() from hash and then add lower priority operation which is currently read one to the hash.
                else push current operation to hash
-12. Check hash if there exists higher order operation, push that ot charArray after finishing push current to hash
-    else push current operation to hash
+12. Check hash if there is higher order operation; put the higher order operation (which is top index of the hash) to the result array with peek()
+    then pop() from hash and then add lower priority operation which is currently read one to the hash.
+        else push current operation to hash
 13. After all the input String finished check the operation hash lastly and if there exist operation push charArray by hash Order
 14. Tansform result charArray to String
 15. Return String
 */ 
 public class InToPost_fix 
 {
-    public int infix_to_postfix(String inputString)
+    public String infix_to_postfix(String inputString)
     {
         //1, 2, 3
         int operation_hash_capacity = 20, result_index = 0;
         char[] inputCharArr = inputString.toCharArray();
         char[] resultCharArr = new char[operation_hash_capacity];
+        String finalString = null;
         hash_arr hash = new hash_arr(operation_hash_capacity);
         int inputCharArrLength = inputCharArr.length;
         char readChar;
@@ -53,7 +55,7 @@ public class InToPost_fix
                 else if(readChar == ')') // 9.2
                 {
                     // Check the hash until reach "(" if exists
-                    while(hash.peek() != '(')
+                    while(!hash.isEmpty() && hash.peek() != '(')
                     {
                         if(hash.isEmpty()) // Check for Unappropriate Equation form
                         {
@@ -69,15 +71,29 @@ public class InToPost_fix
                 {
                     hash.push(readChar);
                 }
-                else if(readChar == '*' || readChar == '/') // 11
+                else if(readChar == '*' || readChar == '/' || readChar == '+' || readChar == '-') // 11, 12
                 {
-                    if(operation_priority(readChar) )
+                    if(!hash.isEmpty())
+                    {
+                        while(!hash.isEmpty() && operation_priority(hash.peek()) > operation_priority(readChar)) // Maybe there is more than one operation's priority is bigger
+                        {
+                            resultCharArr[result_index++] = hash.peek();
+                            hash.pop();
+                        }
+                    }
+                    hash.push(readChar);
                 }
             }
         }
-        return 0;
+        while(!hash.isEmpty()) // 13
+        {
+            resultCharArr[result_index++] = hash.peek();
+            hash.pop();
+        }
+        finalString = new String(resultCharArr, 0, result_index);
+        return finalString;
     }
-    public int operation_priority(char ch)
+    private int operation_priority(char ch)
     {
         if(ch == '(' || ch == ')')
             return 3;
