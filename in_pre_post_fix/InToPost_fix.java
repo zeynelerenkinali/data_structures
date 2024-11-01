@@ -45,7 +45,11 @@ public class InToPost_fix
             {
                 if(readChar == '(')
                 {
-
+                    hash.push(readChar);
+                }
+                else if(readChar == ')')
+                {
+                    
                 }
             }
         }
