@@ -63,7 +63,15 @@ public class InToPost_fix
                         resultCharArr[result_index++] = hash.peek();
                         hash.pop();
                     }
-                    
+                    hash.pop(); // pop the '('
+                }
+                else if(readChar == '^') // 10
+                {
+                    hash.push(readChar);
+                }
+                else if(readChar == '*' || readChar == '/') // 11
+                {
+                    if(operation_priority(readChar) )
                 }
             }
         }
