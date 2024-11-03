@@ -38,7 +38,6 @@ public class InToPost_fix
         hash_arr hash = new hash_arr(operation_hash_capacity);
         int inputCharArrLength = inputCharArr.length;
         char readChar;
-
         for(int i = 0; i < inputCharArrLength; i++)
         {
             // 4
@@ -95,9 +94,9 @@ public class InToPost_fix
     }
     private int operation_priority(char ch)
     {
-        if(ch == '(' || ch == ')')
-            return 3;
-        else if(ch == '^')
+        //if(ch == '(' || ch == ')')
+        //    return 3;
+        if(ch == '^')
             return 2;
         else if(ch == '*' || ch == '/')
             return 1;

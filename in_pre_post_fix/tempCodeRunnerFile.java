@@ -1,1 +1,1 @@
-
+test[9] = inToPost.infix_to_postfix("(5+3)*(2+1)*2"); // Expected : 53+21+*2* --Error 53+21+2**

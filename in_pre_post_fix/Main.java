@@ -5,7 +5,7 @@ public class Main {
         int test_count = 10;
         String test[] = new String[10];
 
-        test[0] = inToPost.infix_to_postfix("3+5*2"); // Expected : 352*+
+        test[0] = inToPost.infix_to_postfix("3+5*2"); // Expected : 352*+ 
 
         test[1] = inToPost.infix_to_postfix("(1+2)*4+3"); // Expected : 12+4*3+
 
@@ -13,7 +13,7 @@ public class Main {
 
         test[3] = inToPost.infix_to_postfix("(7+8)/(4-2)"); // Expected : 78+42-/
 
-        test[4] = inToPost.infix_to_postfix("6+3*2^2-4"); // Expected : 6322^*+4-
+        test[4] = inToPost.infix_to_postfix("6+3*2^2-4"); // Expected : 6322^*4-+
 
         test[5] = inToPost.infix_to_postfix("(2+3)*(5+4)"); // Expected : 23+54+*
 
@@ -23,12 +23,13 @@ public class Main {
 
         test[8] = inToPost.infix_to_postfix("9+(6/(1+2))*3"); // Expected : 9612+/3*+
 
-        test[9] = inToPost.infix_to_postfix("(5+3)*(2+1)*2"); // Expected : 53+21+*2*
+        test[9] = inToPost.infix_to_postfix("(5+3)*(2+1)*2"); // Expected : 53+21+2** 
 
         // Print test results
         for(int i = 0; i < test_count; i++)
         {
-            System.out.println(test[i]);
+            if(test[i] != null)
+                System.out.println((i+1) + ". Postfix = " + test[i]);
         }
     }
 }
