@@ -4,9 +4,14 @@
  * then, it will swap the selected element with element that started the search with.
  * ---
  * Algorithm:
- * 1. Initialize; array, searchStartIndex, smallestElement.
+ * 1. Initialize; array, searchStartIndex, smallestElementIndex.
  * 2. Start 'for loop' with, length of the array.
- * 3. 
+ *    3.Set searchStartIndex to outer loop's variable, Set smallestElementIndex to array's searchStartIndex. 
+ * 4. Start second 'for loop' inside outer 'for loop'.
+ *    5. Open if condition check if smallestElementIndex is smaller than array's current for loop index.
+ *      6. set smallest element to array's current for loop index.
+ * 7. if smallest element is not same one with before the operation, swap elements.
+ * 8. return result.
  */
 
 
@@ -14,6 +19,37 @@ public class selection_sort
 {
     public static void main(String[] args)
     {
-         
+         selection_sort s_s = new selection_sort();
+
+        int[] arr = {9,8,7,6,5,4,3,2,1,0};
+         arr = s_s.sort(arr);
+         for(int i = 0;i < arr.length; i++)
+         {
+            System.out.print(arr[i] + " ");
+         }
+         System.out.println();
+    }
+
+    public int[] sort(int[] unsorted_arr)
+    {
+        int[] sorted_arr = unsorted_arr;
+        int searchStartIndex, smallestElementIndex;
+        for(int i = 0; i < sorted_arr.length; i++)
+        {
+            searchStartIndex = i;
+            smallestElementIndex = i;
+            for(int k = searchStartIndex; k < sorted_arr.length; k++)
+            {
+                if(sorted_arr[smallestElementIndex] > sorted_arr[k])
+                    smallestElementIndex = k;
+            }
+            if(smallestElementIndex != searchStartIndex)
+            {
+                int temp = sorted_arr[searchStartIndex];
+                sorted_arr[searchStartIndex] = sorted_arr[smallestElementIndex];
+                sorted_arr[smallestElementIndex] = temp;
+            }
+        }
+        return sorted_arr;
     }
 }
