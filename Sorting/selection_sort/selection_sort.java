@@ -19,15 +19,10 @@ public class selection_sort
 {
     public static void main(String[] args)
     {
-         selection_sort s_s = new selection_sort();
+        selection_sort s_s = new selection_sort();
 
         int[] arr = {9,8,7,6,5,4,3,2,1,0};
-         arr = s_s.sort(arr);
-         for(int i = 0;i < arr.length; i++)
-         {
-            System.out.print(arr[i] + " ");
-         }
-         System.out.println();
+        arr = s_s.sort(arr);
     }
 
     public int[] sort(int[] unsorted_arr)
@@ -49,6 +44,11 @@ public class selection_sort
                 sorted_arr[searchStartIndex] = sorted_arr[smallestElementIndex];
                 sorted_arr[smallestElementIndex] = temp;
             }
+            for(int p = 0; p < sorted_arr.length; p++)
+            {
+               System.out.print(sorted_arr[p] + " ");
+            }
+            System.out.println();
         }
         return sorted_arr;
     }

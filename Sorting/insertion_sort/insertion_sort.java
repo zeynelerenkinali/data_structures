@@ -15,13 +15,8 @@ public class insertion_sort
     {
         insertion_sort ins_sort = new insertion_sort();
 
-        int arr[] = {9, 8, 7, 6};
+        int arr[] = {9,8,7,6,5,4,3,2,1,0};
         ins_sort.insert_sort(arr);
-        for(int i = 0; i < arr.length; i++)
-        {
-            System.out.print(arr[i] + " ");
-        }   
-        System.out.println();
     }
     public int[] insert_sort(int[] not_sorted_array)
     {
@@ -48,6 +43,11 @@ public class insertion_sort
                     sorted_array[arr_index+1] = temp;
                 }
             }
+            for(int p = 0; p < sorted_array.length; p++)
+            {
+                System.out.print(sorted_array[p] + " ");
+            }   
+            System.out.println();
         }
         return sorted_array;
     }
