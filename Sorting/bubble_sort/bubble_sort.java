@@ -23,24 +23,26 @@ public class bubble_sort
 
     public int[] sort(int[] unsorted_arr)
     {
+        //1
         int[] sorted_arr = unsorted_arr;
         int swap_check_counter;
-
+        //2
         for(int i = 0, j = sorted_arr.length; i < j; j--)
         {
+            //3
             swap_check_counter = 0;
             for(int k = 0; k < (j-1); k++)
             {
-                if(sorted_arr[k] > sorted_arr[k + 1])
+                if(sorted_arr[k] > sorted_arr[k + 1])//4
                 {
                     //5
                     int temp = sorted_arr[k+1];
                     sorted_arr[k+1] = sorted_arr[k];
                     sorted_arr[k] = temp;
-                    swap_check_counter++;
+                    swap_check_counter++; 
                 }
             }
-            if(swap_check_counter == 0)
+            if(swap_check_counter == 0) 
                 break;
             for(int p = 0; p < sorted_arr.length;p++)
             {
@@ -48,6 +50,6 @@ public class bubble_sort
             }
             System.out.println();
         }
-        return sorted_arr;
+        return sorted_arr;  // 7
     }
 }
