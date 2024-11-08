@@ -13,8 +13,6 @@
  * 7. if smallest element is not same one with before the operation, swap elements.
  * 8. return result.
  */
-
-
 public class selection_sort 
 {
     public static void main(String[] args)

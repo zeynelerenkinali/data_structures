@@ -22,7 +22,7 @@ public class insertion_sort
     {
         int null_arr[] = new int[0];
         // 1.
-        int array_length = not_sorted_array.length, key, arr_index;
+        int array_length = not_sorted_array.length, key, arr_index, swap_check_counter;
         int sorted_array[] = not_sorted_array;
         // 2.
         if(array_length < 2)
@@ -34,6 +34,7 @@ public class insertion_sort
         {
             arr_index = i;
             key = not_sorted_array[i];
+            swap_check_counter = 0;
             while(arr_index != 0)
             {
                 if(key < sorted_array[--arr_index]) // 3. 4. 5. 6.
@@ -41,8 +42,11 @@ public class insertion_sort
                     int temp = sorted_array[arr_index];
                     sorted_array[arr_index] = key;
                     sorted_array[arr_index+1] = temp;
+                    swap_check_counter++;
                 }
             }
+            if(swap_check_counter == 0) 
+                break;
             for(int p = 0; p < sorted_array.length; p++)
             {
                 System.out.print(sorted_array[p] + " ");
