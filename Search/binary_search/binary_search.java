@@ -1,3 +1,8 @@
+/*
+ * Algorithm
+ * 1. 34
+ */
+
 public class binary_search 
 {
     public void search(int[] s_arr, int key_element)
