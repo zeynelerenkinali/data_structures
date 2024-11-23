@@ -17,13 +17,11 @@ public class selection_sort
 {
     public static void main(String[] args)
     {
-        selection_sort s_s = new selection_sort();
-
         int[] arr = {9,8,7,6,5,4,3,2,1,0};
-        arr = s_s.sort(arr);
+        sort(arr);
     }
 
-    public int[] sort(int[] unsorted_arr)
+    public static void sort(int[] unsorted_arr)
     {
         int[] sorted_arr = unsorted_arr;
         int searchStartIndex, smallestElementIndex;
@@ -48,6 +46,5 @@ public class selection_sort
             }
             System.out.println();
         }
-        return sorted_arr;
     }
 }

@@ -1,6 +1,6 @@
 /*
  * Algorithm
- * 1. 34
+ * 1. 
  */
 
 public class binary_search 
