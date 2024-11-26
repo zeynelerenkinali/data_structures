@@ -5,28 +5,28 @@
  */
 public class node 
 {
-    private node parent_node, child_node, sibling_node;
+    private node parent_node, left_child_node, right_child_node;
     private int data;
 
     node(int data)
     {
         this.data = data;
         this.parent_node = null;
-        this.child_node = null;
-        this.sibling_node = null;
+        this.left_child_node = null;
+        this.right_child_node = null;
     }
 
     public void set_parent_node(node parent_node)
     {
         this.parent_node = parent_node;
     }
-    public void set_child_node(node child_node)
+    public void set_left_child_node(node left_child_node)
     {
-        this.child_node = child_node;
+        this.left_child_node = left_child_node;
     }
-    public void set_sibling_node(node sibling_node)
+    public void set_right_child_node(node right_child_node)
     {
-        this.sibling_node = sibling_node;
+        this.right_child_node = right_child_node;
     }
     public void set_data(int data)
     {
@@ -37,13 +37,13 @@ public class node
     {
         return this.parent_node;
     }
-    public node get_child_node()
+    public node get_left_child_node()
     {
-        return this.child_node;
+        return this.left_child_node;
     }
-    public node get_sibling_node()
+    public node get_right_child_node()
     {
-        return this.sibling_node;
+        return this.right_child_node;
     }
     public int get_data()
     {
