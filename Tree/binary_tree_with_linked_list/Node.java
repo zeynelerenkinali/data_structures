@@ -3,12 +3,12 @@
  * Includes, main node functions: set_parent_node, set_child_node, set_sibling_node, set_data, get_child_node, get_sibling_node, get_parent_node, get_data.
  * When the node first created: data that node going to hold will assigned to it, and other nodes that initialized first going to declared as null. 
  */
-public class node 
+public class Node 
 {
-    private node parent_node, left_child_node, right_child_node;
+    private Node parent_node, left_child_node, right_child_node;
     private int data;
 
-    node(int data)
+    Node(int data)
     {
         this.data = data;
         this.parent_node = null;
@@ -16,15 +16,15 @@ public class node
         this.right_child_node = null;
     }
 
-    public void set_parent_node(node parent_node)
+    public void set_parent_node(Node parent_node)
     {
         this.parent_node = parent_node;
     }
-    public void set_left_child_node(node left_child_node)
+    public void set_left_child_node(Node left_child_node)
     {
         this.left_child_node = left_child_node;
     }
-    public void set_right_child_node(node right_child_node)
+    public void set_right_child_node(Node right_child_node)
     {
         this.right_child_node = right_child_node;
     }
@@ -33,15 +33,15 @@ public class node
         this.data = data;
     }
 
-    public node get_parent_node()
+    public Node get_parent_node()
     {
         return this.parent_node;
     }
-    public node get_left_child_node()
+    public Node get_left_child_node()
     {
         return this.left_child_node;
     }
-    public node get_right_child_node()
+    public Node get_right_child_node()
     {
         return this.right_child_node;
     }
