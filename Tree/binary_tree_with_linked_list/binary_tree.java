@@ -1,94 +1,121 @@
-/*
- * Binary_tree class algorithm;
- * 1. Initialize, root_node, size,  
- * 2. Create a constructor that will initialize the variables
- * 3. Create a insert_node(data, root) function,
- *    3.1 Create a node with data, 
- *    3.2 If size == 0, 
- *          3.2.1 Set root_node to current node,
- *    3.3 Else if root.data >= data,
- *          3.3.1 if root.left == null
- *               root.left = new_node
- *               new_node.parent = root
- *          4.3.1 else 
- *               insert(data, root.left);
- *    4.1 Else if root.data < data,
- *        4.1 if root.right == null
- *               root.right = new_node
- *               new_node.parent = root
- *        4.2 else
- *             insert(data, root.right)
- * 
- * Print_tree class algorithm;
- * 1. 
- */
 
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class binary_tree 
-{
-    private Node root_node = null;
+public class binary_tree {
+    private Node root_node;
+    private int size;
 
-    void insert_node(int data, Node root_node)
+    // Constructor to initialize the tree
+    public binary_tree() 
     {
-        Node new_node = new Node(data);
-        if(root_node == null)
+        this.root_node = null;
+        this.size = 0;
+    }
+
+    // Insert a new node into the tree
+    public void insert_node(int data) 
+    {
+        // If the tree is empty, create the root node
+        if (this.root_node == null) {
+            this.root_node = new Node(data);
+            this.size++;
+        } 
+        else 
         {
-            this.root_node = new_node;
-            this.root_node.set_parent_node(null);
-        }
-        else if(root_node.get_data() >= new_node.get_data())
-        {
-            if(root_node.get_left_child_node() == null)
-            {
-                root_node.set_left_child_node(new_node);
-                new_node.set_parent_node(root_node);
-            }
-            else
-                insert_node(data, root_node.get_left_child_node());
-        }
-        else if(root_node.get_data() < new_node.get_data())
-        {
-            if(root_node.get_right_child_node() == null)
-            {
-                root_node.set_right_child_node(new_node);
-                new_node.set_parent_node(root_node);
-            }
-            else
-                insert_node(data, root_node.get_right_child_node());
+            // Recursive insertion starting from the root node
+            insert_node(data, this.root_node);
         }
     }
-    public void printTree() {
+
+    // Recursive helper for inserting a new node
+    private void insert_node(int data, Node current_node) {
+        if (data < current_node.get_data()) {
+            // Go to the left subtree
+            if (current_node.get_left_child_node() == null) {
+                Node new_node = new Node(data);
+                current_node.set_left_child_node(new_node);
+                new_node.set_parent_node(current_node);
+                this.size++;
+            } else {
+                insert_node(data, current_node.get_left_child_node());
+            }
+        } else if (data > current_node.get_data()) {
+            // Go to the right subtree
+            if (current_node.get_right_child_node() == null) {
+                Node new_node = new Node(data);
+                current_node.set_right_child_node(new_node);
+                new_node.set_parent_node(current_node);
+                this.size++;
+            } else {
+                insert_node(data, current_node.get_right_child_node());
+            }
+        }
+        // If data is equal, ignore it (no duplicates in standard BST)
+    }
+
+    // Delete a node from the tree
+    public void delete_node(int data) {
+        root_node = delete_node(root_node, data);
+    }
+
+    // Recursive helper for deleting a node
+    private Node delete_node(Node current_node, int data) {
+        if (current_node == null) {
+            return null; // Base case: if tree is empty or node not found
+        }
+
+        if (data < current_node.get_data()) {
+            // Data is in the left subtree
+            current_node.set_left_child_node(delete_node(current_node.get_left_child_node(), data));
+        } else if (data > current_node.get_data()) {
+            // Data is in the right subtree
+            current_node.set_right_child_node(delete_node(current_node.get_right_child_node(), data));
+        } else {
+            // Node to be deleted found
+
+            // Case 1: Node is a leaf node (no children)
+            if (current_node.get_left_child_node() == null && current_node.get_right_child_node() == null) {
+                return null;
+            }
+
+            // Case 2: Node has only one child
+            if (current_node.get_left_child_node() == null) {
+                return current_node.get_right_child_node();
+            } else if (current_node.get_right_child_node() == null) {
+                return current_node.get_left_child_node();
+            }
+
+            // Case 3: Node has two children
+            // Find the inorder successor (smallest node in right subtree)
+            Node successor = find_minimum(current_node.get_right_child_node());
+            current_node.set_data(successor.get_data());  // Replace current node with successor's data
+            current_node.set_right_child_node(delete_node(current_node.get_right_child_node(), successor.get_data()));  // Delete the successor
+        }
+        return current_node;
+    }
+
+    // Find the node with the minimum value (inorder successor)
+    private Node find_minimum(Node current_node) {
+        while (current_node.get_left_child_node() != null) {
+            current_node = current_node.get_left_child_node();
+        }
+        return current_node;
+    }
+
+    // Print the tree (inorder traversal)
+    public void print() {
         if (this.root_node == null) {
             System.out.println("Tree is empty.");
-            return;
+        } else {
+            print(this.root_node);
+            System.out.println(); // Add a newline at the end of the print
         }
-
-        // Initialize a queue for level-order traversal
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(this.root_node);
-
-        // Traverse the tree level by level
-        while (!queue.isEmpty()) {
-            // Remove the front node from the queue
-            Node current = queue.poll();
-
-            // Print the data of the current node
-            System.out.print(current.get_data() + " ");
-
-            // Add the left child to the queue
-            if (current.get_left_child_node() != null) {
-                queue.add(current.get_left_child_node());
-            }
-
-            // Add the right child to the queue
-            if (current.get_right_child_node() != null) {
-                queue.add(current.get_right_child_node());
-            }
-        }
-
-        System.out.println(); // Move to the next line after printing all nodes
     }
 
+    private void print(Node root_node) {
+        if (root_node != null) {
+            print(root_node.get_left_child_node());
+            System.out.print(root_node.get_data() + " ");
+            print(root_node.get_right_child_node());
+        }
+    }   
 }
