@@ -102,20 +102,36 @@ public class binary_tree {
     }
 
     // Print the tree (inorder traversal)
-    public void print() {
+    public void print(String type) {
         if (this.root_node == null) {
             System.out.println("Tree is empty.");
         } else {
-            print(this.root_node);
+            print(this.root_node, type);
             System.out.println(); // Add a newline at the end of the print
         }
     }
 
-    private void print(Node root_node) {
+    private void print(Node root_node, String type) {
         if (root_node != null) {
-            print(root_node.get_left_child_node());
-            System.out.print(root_node.get_data() + " ");
-            print(root_node.get_right_child_node());
+            switch (type) {
+                case "in" -> {
+                    print(root_node.get_left_child_node(), type);
+                    System.out.print(root_node.get_data() + " ");
+                    print(root_node.get_right_child_node(), type);
+                }
+                case "pre" -> {
+                    System.out.print(root_node.get_data() + " ");
+                    print(root_node.get_left_child_node(), type);
+                    print(root_node.get_right_child_node(), type);
+                }
+                case "post" -> {
+                    print(root_node.get_left_child_node(), type);
+                    print(root_node.get_right_child_node(), type);
+                    System.out.print(root_node.get_data() + " ");
+                }
+                default -> {
+                }
+            }
         }
     }   
 }
